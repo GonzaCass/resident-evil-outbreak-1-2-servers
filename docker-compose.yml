@@ -1,0 +1,17 @@
+services:
+  outbreak-server:
+    build: .
+    container_name: outbreak-server
+    restart: unless-stopped
+    network_mode: host
+    cap_add:
+      - NET_ADMIN
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./config:/root/config
+    environment:
+      - MYSQL_ROOT_PASSWORD=reoutbreak
+      - EXTERNAL_IP=TU_IP_PUBLICA_O_DOMINIO
+
+volumes:
+  db_data:
